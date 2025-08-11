@@ -38,8 +38,17 @@ fn main() {
         .init_resource::<resources::Level>()
         .insert_resource(Time::<Fixed>::from_seconds(2.0))
         .insert_state(GameState::Playing)
-        .add_systems(Startup, (setup_camera, spawn_initial_piece, update_gravity_speed))
-        .add_systems(Update, (handle_input, draw_blocks, clear_lines, update_gravity_speed))
-        .add_systems(FixedUpdate, move_piece_down.run_if(in_state(GameState::Playing)))
+        .add_systems(
+            Startup,
+            (setup_camera, spawn_initial_piece, update_gravity_speed),
+        )
+        .add_systems(
+            Update,
+            (handle_input, draw_blocks, clear_lines, update_gravity_speed),
+        )
+        .add_systems(
+            FixedUpdate,
+            move_piece_down.run_if(in_state(GameState::Playing)),
+        )
         .run();
 }

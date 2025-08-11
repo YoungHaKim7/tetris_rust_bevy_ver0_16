@@ -5,7 +5,11 @@ use crate::game_types::{GameMap, Presence};
 use crate::resources::Level;
 use crate::resources::Score;
 
-pub fn clear_lines(mut game_map: ResMut<GameMap>, mut score: ResMut<Score>, mut level: ResMut<Level>) {
+pub fn clear_lines(
+    mut game_map: ResMut<GameMap>,
+    mut score: ResMut<Score>,
+    mut level: ResMut<Level>,
+) {
     let mut lines_cleared = 0;
     let mut rows_to_clear = Vec::new();
 

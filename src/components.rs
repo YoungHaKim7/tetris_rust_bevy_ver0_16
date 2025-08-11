@@ -1,5 +1,5 @@
-use bevy::prelude::*;
 use crate::game_color::GameColor;
+use bevy::prelude::*;
 
 #[derive(Component, Default, Copy, Clone)]
 pub struct Piece {

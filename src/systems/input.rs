@@ -1,5 +1,5 @@
-use bevy::input::keyboard::KeyCode;
 use bevy::input::ButtonInput;
+use bevy::input::keyboard::KeyCode;
 use bevy::prelude::*;
 
 use crate::components::{Piece, Position};

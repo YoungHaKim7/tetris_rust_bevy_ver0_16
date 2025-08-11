@@ -2,7 +2,8 @@ use bevy::prelude::Color;
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Default)]
 pub enum GameColor {
-    #[default] Red,
+    #[default]
+    Red,
     Green,
     Blue,
     Yellow,

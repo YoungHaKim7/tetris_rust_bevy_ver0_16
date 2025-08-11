@@ -11,7 +11,10 @@ pub fn spawn_piece(
     game_state: &mut ResMut<NextState<GameState>>,
 ) {
     let new_piece = Piece::random();
-    let initial_position = Position { x: NUM_BLOCKS_X as isize / 2 - 1, y: 0 };
+    let initial_position = Position {
+        x: NUM_BLOCKS_X as isize / 2 - 1,
+        y: 0,
+    };
 
     if super::movement::can_move(&new_piece, &initial_position, initial_position.y, &game_map) {
         commands.spawn((new_piece, initial_position));
