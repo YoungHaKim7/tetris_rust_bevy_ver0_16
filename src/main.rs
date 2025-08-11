@@ -4,10 +4,12 @@ use crate::game_constants::{
     HEIGHT, LEVEL_TIMES, NUM_BLOCKS_X, NUM_BLOCKS_Y, NUM_LEVELS, TEXTURE_SIZE, TITLE, WIDTH,
 };
 use crate::game_types::{GameMap, PieceMatrix, PieceType, Presence};
-use bevy::input::ButtonInput;
+
 use bevy::input::keyboard::KeyCode;
+use bevy::input::ButtonInput;
 use bevy::prelude::*;
-use rand::{Rng, rng};
+use rand::{rng, Rng};
+
 use std::time::Duration;
 
 mod components;
@@ -490,99 +492,7 @@ fn clear_lines(mut game_map: ResMut<GameMap>, mut score: ResMut<Score>, mut leve
     }
 }
 
-// // BEGIN: UI systems (commented out for WSL build)
-// /*
-// // New system to set up UI
-// fn setup_ui(mut commands: Commands) {
-//     commands.spawn((
-//         TextBundle::from_sections([
-//             TextSection::new(
-//                 "Score: ",
-//                 TextStyle {
-//                     font_size: 40.0,
-//                     color: Color::WHITE,
-//                     ..default()
-//                 },
-//             ),
-//             TextSection::from_style(TextStyle {
-//                 font_size: 40.0,
-//                 color: Color::WHITE,
-//                 ..default()
-//             }),
-//             TextSection::new(
-//                 "
-// Level: ",
-//                 TextStyle {
-//                     font_size: 40.0,
-//                     color: Color::WHITE,
-//                     ..default()
-//                 },
-//             ),
-//             TextSection::from_style(TextStyle {
-//                 font_size: 40.0,
-//                 color: Color::WHITE,
-//                 ..default()
-//             }),
-//         ])
-//         .with_style(Style {
-//             position_type: PositionType::Absolute,
-//             top: Val::Px(10.0),
-//             left: Val::Px(10.0),
-//             ..default()
-//         }),
-//         ScoreDisplay,
-//         LevelDisplay,
-//     ));
-// }
-
-// // New system to update score display
-// fn update_score_display(score: Res<Score>, mut query_text: Query<&mut Text, With<ScoreDisplay>>) {
-//     if score.is_changed() {
-//         if let Some(mut text) = query_text.iter_mut().next() {
-//             text.sections.get_mut(1).unwrap().value = score.value.to_string();
-//         }
-//     }
-// }
-
-// // Component to mark the game over message
-// #[derive(Component)]
-// struct GameOverMessage;
-
-// // New system to set up Game Over UI
-// fn setup_game_over_ui(mut commands: Commands) {
-//     let mut text_bundle = TextBundle::from_section(
-//         "GAME OVER",
-//         TextStyle {
-//             font_size: 100.0,
-//             color: Color::srgb_u8(255, 0, 0),
-//             ..default()
-//         },
-//     )
-//     .with_style(Style {
-//         position_type: PositionType::Absolute,
-//         top: Val::Percent(40.0),
-//         left: Val::Percent(20.0),
-//         ..default()
-//     });
-
-//     text_bundle.visibility = Visibility::Hidden;
-
-//     commands.spawn((text_bundle, GameOverMessage));
-// }
-
-// // New system to display Game Over message
-// fn display_game_over_message(
-//     game_state: Res<State<GameState>>,
-//     mut query_game_over_message: Query<&mut Visibility, With<GameOverMessage>>,
-// ) {
-//     if game_state.get() == &GameState::GameOver {
-//         if let Some(mut visibility) = query_game_over_message.iter_mut().next() {
-//             *visibility = Visibility::Visible;
-//         }
-//     }
-// }
-
-// // New system to update gravity speed based on level
+// New system to update gravity speed based on level
 fn update_gravity_speed(level: Res<Level>, mut fixed_time: ResMut<Time<Fixed>>) {
     if level.is_changed() {
         let level_index = level.value as usize;
@@ -594,15 +504,3 @@ fn update_gravity_speed(level: Res<Level>, mut fixed_time: ResMut<Time<Fixed>>) 
         }
     }
 }
-
-// /*
-// // New system to update level display
-// fn update_level_display(level: Res<Level>, mut query_text: Query<&mut Text, With<LevelDisplay>>) {
-//     if level.is_changed() {
-//         if let Some(mut text) = query_text.iter_mut().next() {
-//             text.sections.get_mut(3).unwrap().value = level.value.to_string(); // Accessing index 3 for Level value
-//         }
-//     }
-// }
-// */
-// // END: UI systems

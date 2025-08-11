@@ -4,7 +4,6 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-# Disable default features to avoid native audio/gamepad deps on WSL
 bevy = { version = "0.16.1", default-features = false, features = [
     "bevy_asset",
     "bevy_winit",
