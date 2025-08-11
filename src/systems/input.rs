@@ -52,9 +52,9 @@ pub fn handle_input(
             }
 
             let piece_matrix = get_block_matrix(piece.states[piece.current_state], piece.color);
-            for my in 0..4 {
-                for mx in 0..4 {
-                    if let Presence::Yes(color) = piece_matrix[my][mx] {
+            for (my, row) in piece_matrix.iter().enumerate() {
+                for (mx, cell) in row.iter().enumerate() {
+                    if let Presence::Yes(color) = *cell {
                         let map_x = position.x + mx as isize;
                         let map_y = position.y + my as isize;
                         if map_x >= 0
@@ -74,9 +74,8 @@ pub fn handle_input(
         if keyboard_input.just_pressed(bevy::input::keyboard::KeyCode::ArrowUp) {
             let old_state = piece.current_state;
             let next_state = (piece.current_state + 1) % 4;
-            let next_state_clone = next_state.clone();
-            let mut rotated_piece = piece.clone();
-            rotated_piece.current_state = next_state_clone;
+            let mut rotated_piece = *piece;
+            rotated_piece.current_state = next_state;
 
             if can_rotate(&rotated_piece, &position, &game_map) {
                 piece.current_state = next_state;
@@ -89,9 +88,9 @@ pub fn handle_input(
 
 pub fn can_rotate(piece: &Piece, current_pos: &Position, game_map: &GameMap) -> bool {
     let piece_matrix = get_block_matrix(piece.states[piece.current_state], piece.color);
-    for my in 0..4 {
-        for mx in 0..4 {
-            if let Presence::Yes(_) = piece_matrix[my][mx] {
+    for (my, row) in piece_matrix.iter().enumerate() {
+        for (mx, cell) in row.iter().enumerate() {
+            if let Presence::Yes(_) = *cell {
                 let block_x = current_pos.x + mx as isize;
                 let block_y = current_pos.y + my as isize;
 
@@ -119,9 +118,9 @@ pub fn can_move_horizontally(
     game_map: &GameMap,
 ) -> bool {
     let piece_matrix = get_block_matrix(piece.states[piece.current_state], piece.color);
-    for my in 0..4 {
-        for mx in 0..4 {
-            if let Presence::Yes(_) = piece_matrix[my][mx] {
+    for (my, row) in piece_matrix.iter().enumerate() {
+        for (mx, cell) in row.iter().enumerate() {
+            if let Presence::Yes(_) = *cell {
                 let block_x = new_x + mx as isize;
                 let block_y = current_pos.y + my as isize;
 

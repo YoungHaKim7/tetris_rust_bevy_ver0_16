@@ -11,7 +11,7 @@ pub fn update_gravity_speed(level: Res<Level>, mut fixed_time: ResMut<Time<Fixed
             let new_speed_ms = LEVEL_TIMES[level_index];
             let new_speed_secs = new_speed_ms as f32 / 1000.0;
             fixed_time.set_wrap_period(Duration::from_secs_f32(new_speed_secs));
-            println!("Gravity speed updated to: {}s", new_speed_secs);
+            println!("Gravity speed updated to: {new_speed_secs}s");
         }
     }
 }

@@ -16,7 +16,7 @@ pub fn spawn_piece(
         y: 0,
     };
 
-    if super::movement::can_move(&new_piece, &initial_position, initial_position.y, &game_map) {
+    if super::movement::can_move(&new_piece, &initial_position, initial_position.y, game_map) {
         commands.spawn((new_piece, initial_position));
         println!("Spawned new piece");
     } else {

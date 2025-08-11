@@ -12,8 +12,10 @@ use tetris_rust_bevy_ver0_16::systems::input::{can_rotate, handle_input};
 fn rotate_block_within_bounds() {
     let game_map = GameMap::default();
     let pos = Position { x: 5, y: 5 };
-    let mut piece = Piece::default();
-    piece.states = [17984, 3648, 19520, 19968];
+    let piece = Piece {
+        states: [17984, 3648, 19520, 19968],
+        ..Default::default()
+    };
 
     assert!(can_rotate(&piece, &pos, &game_map));
 }

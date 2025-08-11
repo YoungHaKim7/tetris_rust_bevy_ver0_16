@@ -10,7 +10,7 @@ mod state;
 mod systems;
 
 use game_color::GameColor;
-use game_constants::{HEIGHT, TEXTURE_SIZE, TITLE, WIDTH};
+use game_constants::{HEIGHT, TITLE, WIDTH};
 use game_types::GameMap;
 use state::GameState;
 

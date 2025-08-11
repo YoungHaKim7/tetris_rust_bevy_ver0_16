@@ -1,4 +1,4 @@
-pub const TITLE: &'static str = "Tetris in Rust";
+pub const TITLE: &str = "Tetris in Rust";
 
 pub const NUM_BLOCKS_X: usize = 10;
 pub const NUM_BLOCKS_Y: usize = 18;

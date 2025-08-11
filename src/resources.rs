@@ -10,6 +10,3 @@ pub struct Level {
     pub value: u32,
     pub lines_cleared_in_level: u32,
 }
-
-pub use Level as GameLevel;
-pub use Score as GameScore;

@@ -1,7 +1,6 @@
 use bevy::prelude::*;
 
 use crate::components::{Piece, Position};
-use crate::game_color::GameColor;
 use crate::game_constants::{HEIGHT, NUM_BLOCKS_X, NUM_BLOCKS_Y, TEXTURE_SIZE, WIDTH};
 use crate::game_types::{GameMap, Presence};
 use crate::piece_utils::get_block_matrix;
@@ -41,9 +40,9 @@ pub fn draw_blocks(
 
     if let Ok((piece, position)) = query_piece.single() {
         let piece_matrix = get_block_matrix(piece.states[piece.current_state], piece.color);
-        for my in 0..4 {
-            for mx in 0..4 {
-                if let Presence::Yes(color) = piece_matrix[my][mx] {
+        for (my, row) in piece_matrix.iter().enumerate() {
+            for (mx, cell) in row.iter().enumerate() {
+                if let Presence::Yes(color) = *cell {
                     commands.spawn((
                         Sprite {
                             color: color.into(),

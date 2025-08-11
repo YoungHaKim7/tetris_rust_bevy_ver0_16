@@ -21,9 +21,9 @@ pub fn move_piece_down(
             println!("Piece moved down to y: {}", position.y);
         } else {
             let piece_matrix = get_block_matrix(piece.states[piece.current_state], piece.color);
-            for my in 0..4 {
-                for mx in 0..4 {
-                    if let Presence::Yes(color) = piece_matrix[my][mx] {
+            for (my, row) in piece_matrix.iter().enumerate() {
+                for (mx, cell) in row.iter().enumerate() {
+                    if let Presence::Yes(color) = *cell {
                         let map_x = position.x + mx as isize;
                         let map_y = position.y + my as isize;
                         if map_x >= 0
@@ -46,9 +46,9 @@ pub fn move_piece_down(
 
 pub fn can_move(piece: &Piece, current_pos: &Position, new_y: isize, game_map: &GameMap) -> bool {
     let piece_matrix = get_block_matrix(piece.states[piece.current_state], piece.color);
-    for my in 0..4 {
-        for mx in 0..4 {
-            if let Presence::Yes(_) = piece_matrix[my][mx] {
+    for (my, row) in piece_matrix.iter().enumerate() {
+        for (mx, cell) in row.iter().enumerate() {
+            if let Presence::Yes(_) = *cell {
                 let block_x = current_pos.x + mx as isize;
                 let block_y = new_y + my as isize;
 
